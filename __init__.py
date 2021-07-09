@@ -6,7 +6,7 @@ from wyze_sdk.errors import WyzeApiError
 from wyze_sdk.models.devices import ThermostatSystemMode
 from wyze_sdk.models.devices import ThermostatSystemMode
 
-def login():
+def login(self):
     username = self.settings.get('wyze_username')
     password = self.settings.get('wyze_password')
     client = Client(email=username, password=password)
@@ -33,18 +33,18 @@ class WyzeThermostat(MycroftSkill):
 
     def __init__(self):
         MycroftSkill.__init__(self)
-        client = login()
+        client = login(self)
         device = get_thermostat()
 
     @intent_file_handler('read_temperature.intent')
     def handle_thermostat_read_temperature(self, message):
-        client = login()
+        client = login(self)
         thermostat = client.thermostats.info(device_mac=device.mac)
         self.speak_dialog('read_temperature', data={"temperature": str(thermostat.temperature)})
 
     @intent_file_handler('read.intent')
     def handle_thermostat_read(self, message):
-        client = login()
+        client = login(self)
         thermostat = client.thermostats.info(device_mac=device.mac)
         if thermostat.time2temp_val > 0:
             self.speak_dialog('read_with_time', data={"temperature": str(thermostat.cool_sp), "time": str(thermostat.time2temp_val)})
@@ -53,7 +53,7 @@ class WyzeThermostat(MycroftSkill):
 
     @intent_file_handler('set.intent')
     def handle_thermostat_set(self, message):
-        client = login()
+        client = login(self)
         numbers = [int(i) for i in message.utterance.split() if i.isdigit()]
         if len(numbers) > 0:
             cooling_setpoint=numbers[0]
