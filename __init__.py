@@ -10,7 +10,7 @@ def login():
     username = self.settings.get('wyze_username')
     password = self.settings.get('wyze_password')
     client = Client(email=username, password=password)
-    self.log.info("Logging in for " username)
+    self.log.info("Logging in for " + username)
     return client
 
 
