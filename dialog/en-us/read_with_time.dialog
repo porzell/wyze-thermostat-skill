@@ -1,0 +1,4 @@
+The thermostat is set to reach {temperature} degrees in {time} minutes.
+The current setting is {temperature} degrees and will reach the target temperature in {time} minutes.
+Right now, the thermostat is set to reach {temperature} degrees in {time} minutes.
+The house temperature is set to reach {temperature} degrees in {time} minutes.
