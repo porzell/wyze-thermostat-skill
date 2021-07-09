@@ -65,11 +65,6 @@ class WyzeThermostat(MycroftSkill):
         else:
             self.speak_dialog('read', data={"temperature": str(thermostat.cool_sp)})
 
-def _setup(self, force=False):
-    client = login()
-    if client is not None:
-
-
 def create_skill():
     return WyzeThermostat()
 
